@@ -1,0 +1,20 @@
+apiVersion: example.crossplane.io/v1
+kind: WebApp
+metadata:
+  annotations:
+    terasky.backstage.io/source-info: >-
+      {"pushToGit":true,"gitBranch":"main","gitRepo":"github.com?owner=pmeth&repo=kubecon-na-2025","gitLayout":"cluster-scoped","basePath":"demo-cluster/mystuff/WebApp"}
+    terasky.backstage.io/add-to-catalog: 'true'
+    terasky.backstage.io/owner: group:default/guests
+    terasky.backstage.io/system: mystuff
+    terasky.backstage.io/source-file-url: >-
+      https://github.com/pmeth/kubecon-na-2025/blob/main/demo-cluster/mystuff/WebApp/myapp.yaml
+  name: myapp
+  namespace: mystuff
+spec:
+  scaling:
+    enabled: true
+    maxReplicas: 10
+    minReplicas: 1
+  crossplane:
+    compositionUpdatePolicy: Automatic
